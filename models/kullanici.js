@@ -12,4 +12,4 @@ const kullanciSchema = new Schema({
     _sifre : String 
 
 })
-module.exports = kullancilarModel = mongoose.model("kullanici",kullanciSchema,"kullanci")
+module.exports = kullaniciModel = mongoose.model("kullanici",kullanciSchema,"kullanci")

@@ -17,7 +17,7 @@ app.use(express.json());
 
 /* INIT DB */
 mongoose
-    .connect(process.env.MONGO_URL, {
+    .connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
@@ -33,11 +33,23 @@ mongoose
 app.get("/", (req, res) => {
     res.send("Eti Maden Projesi Root");
 });
-app.get("/kullanici", async (req, res, next) => {
+app.get("/genelVeri", async (req, res, next) => {
     try {
-        const requests = await requestsModel.find({}).select({ _id: 0 });
-        res.json(requests);
-        print(requests)
+        Promise.all([
+            kullanciModel.find({}).select({ _id: 0 }),
+            
+        ]).then(([kullanici, istasyonlar, müşteriler, vagonlar]) => {
+            /*res.json({
+                eşyalar,
+                istasyonlar: {
+                    yurtiçi: yurtiçiİstasyonlar,
+                    yurtdışı: yurtdışıİstasyonlar,
+                },
+                müşteriler,
+                vagonlar,
+            });*/
+            res.send(kullanici)
+        });
     } catch (err) {
         next(err);
     }
