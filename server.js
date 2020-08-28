@@ -38,15 +38,9 @@ app.get("/genelVeri", async (req, res, next) => {
         Promise.all([
             kullanciModel.find({}).select({ _id: 0 }),
             
-        ]).then(([kullanici, istasyonlar, müşteriler, vagonlar]) => {
+        ]).then(([kullanici]) => {
             /*res.json({
-                eşyalar,
-                istasyonlar: {
-                    yurtiçi: yurtiçiİstasyonlar,
-                    yurtdışı: yurtdışıİstasyonlar,
-                },
-                müşteriler,
-                vagonlar,
+              
             });*/
             res.send(kullanici)
         });
