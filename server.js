@@ -31,7 +31,7 @@ mongoose
 /* ROUTES */
  
 app.get("/", (req, res) => {
-    res.send("root");
+    res.send("Eti Maden Projesi Root");
 });
 app.get("/kullanici", async (req, res, next) => {
     try {
