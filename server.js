@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-require("dotenv").config();
+var dotenv = require('dotenv');
+dotenv.config();
+var url = process.env.MONGOLAB_URI;
 var createError = require("http-errors");
 
 const app = express();
@@ -16,7 +18,7 @@ app.use(express.json());
 
 /* INIT DB */
 mongoose
-    .connect(process.env.MONGO_URI, {
+    .connect(url, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
@@ -58,7 +60,7 @@ app.use((req, res, next) => {
 });
 
 /* SERVER RUNNER */
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
