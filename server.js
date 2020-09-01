@@ -39,10 +39,9 @@ app.get("/genelVeri", async (req, res, next) => {
             kullanciModel.find({}).select({ _id: 0 }),
             
         ]).then(([kullanici]) => {
-            /*res.json({
-              
-            });*/
-            res.send(kullanici)
+            res.json({
+              kullanici
+            });
         });
     } catch (err) {
         next(err);
