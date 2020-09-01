@@ -34,18 +34,14 @@ app.get("/", (req, res) => {
     res.send("Eti Maden Projesi Root");
 });
 app.get("/genelVeri", async (req, res, next) => {
-    try {
-        Promise.all([
-            kullanciModel.find({}).select({ _id: 0 }),
-            
-        ]).then(([kullanici]) => {
-            res.json({
-              kullanici
-            });
-        });
-    } catch (err) {
-        next(err);
-    }
+    kullanciModel.find({}).then((data) =>
+    {
+        console.log('Data : ',data)
+        res.json(data);
+    }).catch((error) =>
+    {
+        console.log('Error : ',daerrorta)
+    });
 });
 
 
