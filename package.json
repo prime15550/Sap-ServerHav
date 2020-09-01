@@ -19,5 +19,8 @@
     "mongodb": "^3.5.9",
     "mongoose": "^5.10.2"
   },
+  "engines": {
+    "node": "8.9.3"
+},
   "devDependencies": {}
 }
