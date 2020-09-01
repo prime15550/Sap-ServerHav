@@ -7,7 +7,7 @@ var createError = require("http-errors");
 const app = express();
 
 /* MODEL IMPORTS */
-const kullaniciModel = require(".models/kullanici.js");
+const kullaniciModel = require("./models/kullanici.js");
 
 /* MIDDLEWARES */
 app.use(cors());
@@ -30,9 +30,6 @@ mongoose
 app.get("/", (req, res) => {
     res.send("root");
 });
-
-
-
 
 app.get("/genelVeri", async (req, res, next) => {
     try {
