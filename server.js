@@ -27,8 +27,6 @@ mongoose
     .catch((err) => console.error("DB connection error: ", err));
 
 
-    const talepSchema = require("./validationSchemas/konteynerSchema");
-const konteynerSchema = require("./validationSchemas/konteynerSchema");
 
 /* ROUTES */
  
@@ -50,31 +48,6 @@ app.get("/genelVeri", async (req, res, next) => {
     }
 });
 
-app.post("/tempkonteyner", async (req, res, next) => {
-    try {
-        const { error } = konteynerSchema.validate(req.body);
-        if (error) {
-            throw createError(400, error);
-        }
-
-        const yeniTalep = new requestsModel(req.body);
-
-        await yeniTalep.save();
-
-        res.send(`Talep No ${yeniTalep.toObject().TalepNo} kaydedildi.`);
-    } catch (err) {
-        next(err);
-    }
-});
-
-app.get("/tempkonteyner", async (req, res, next) => {
-    try {
-        const requests = await requestsModel.find({}).select({ _id: 0 });
-        res.json(requests);
-    } catch (err) {
-        next(err);
-    }
-});
 
 
 /* ERROR HANDLER */
