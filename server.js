@@ -66,6 +66,22 @@ app.post("/konteyner", async (req, res, next) => {
         next(err);
     }
 });
+app.delete("/konteyner", async(req, res, next)=> {
+    try {
+        Task.findByIdAndRemove(req.params.mongo_id, function (err, task) {  
+
+            var response = {
+                message: "task successfully deleted",
+                id: req.mongo_id
+            };
+                res.send(response);
+               });
+
+        res.send(`kaydedildi.`);
+    } catch (err) {
+        next(err);
+    }
+});
 app.get("/konteyner", async (req, res, next) => {
     try {
         const requests = await konteynerModel.find({}).select({ _id: 0 });
