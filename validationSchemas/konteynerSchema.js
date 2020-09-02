@@ -11,7 +11,7 @@ const konteynerSchema = Joi.object({
    paketleme2 :Joi.string().required(),
    paketleme3 :Joi.string().required(),
    paketleme4 :Joi.string().required(),
-   MiktartKonteyner :Joi.string().required(),
+   MiktarKonteyner :Joi.string().required(),
    konteynerTürü:Joi.string().required(),
    bosaltmaYeri :Joi.string().required(),
    bosaltmaYeri2:Joi.string().required(),

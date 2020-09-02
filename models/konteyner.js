@@ -8,7 +8,7 @@ const konteynerSchema = new Schema({
         type : String,
         required : true ,
     },
-    soyisim : 
+    soyad : 
     {
         type : String,
         required : true,
