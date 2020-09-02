@@ -18,7 +18,7 @@ const konteynerSchema = Joi.object({
    kons   :Joi.string().required(),
    aralik1:Joi.date().required(),
    aralik2:Joi.date().required(),
-   ürün:Joi.date().required(),
+   ürün:Joi.string().required(),
    faturaFirması:Joi.string().required(),
    aliciFirması :Joi.string().required(),
    firmaIhbar1  :Joi.string().required(),
