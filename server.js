@@ -1,13 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-require("dotenv").config();
+var dotenv = require('dotenv');
+dotenv.config();
+var url = process.env.MONGOLAB_URI;
 var createError = require("http-errors");
 
 const app = express();
 
 /* MODEL IMPORTS */
-const kullanciModel = require("./models/kullanici");
+const kullaniciModel = require("./models/kullanici.js");
+const konteynerModel = require("./models/konteyner.js");
 
 
 /* MIDDLEWARES */
@@ -17,7 +20,7 @@ app.use(express.json());
 
 /* INIT DB */
 mongoose
-    .connect(process.env.MONGO_URI, {
+    .connect(url, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
@@ -26,29 +29,51 @@ mongoose
     .then(() => console.log("DB connected"))
     .catch((err) => console.error("DB connection error: ", err));
 
-
-
+const konteynerSchema = require("./validationSchemas/konteynerSchema");
+const konteyner = require("./models/konteyner.js");
 /* ROUTES */
- 
 app.get("/", (req, res) => {
-    res.send("Eti Maden Projesi Root");
+    res.send("root");
 });
+
 app.get("/genelVeri", async (req, res, next) => {
     try {
         Promise.all([
-            kullanciModel.find({}).select({ _id: 0 }),
-            
-        ]).then(([kullanici]) => {
+           kullaniciModel.find({}).select({ _id: 0 })
+        ]).then(([users]) => {
+           console.log(users);
             res.json({
-              kullanici
+                users,
             });
         });
     } catch (err) {
         next(err);
     }
 });
+app.post("/konteyner", async (req, res, next) => {
+    try {
+        const { error } = konteynerSchema.validate(req.body);
+        if (error) {
+            throw createError(400, error);
+        }
 
+        const yeniTalep = new konteynerModel(req.body);
 
+        await yeniTalep.save();
+
+        res.send(`kaydedildi.`);
+    } catch (err) {
+        next(err);
+    }
+});
+app.get("/konteyner", async (req, res, next) => {
+    try {
+        const requests = await konteynerModel.find({}).select({ _id: 0 });
+        res.json(requests);
+    } catch (err) {
+        next(err);
+    }
+});
 
 /* ERROR HANDLER */
 app.use((err, req, res, next) => {
@@ -62,7 +87,7 @@ app.use((req, res, next) => {
 });
 
 /* SERVER RUNNER */
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);

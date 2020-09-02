@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const { Int32 } = require("mongodb");
+
 const Schema = mongoose.Schema;
 
-const RequestSchema = new Schema({
+const konteynerSchema = new Schema({
     isim :
     {
         type : String,
@@ -55,7 +55,7 @@ const RequestSchema = new Schema({
     },
     MiktarKonteyner:
     {
-        type : Int32,
+        type : String,
         required:true,
     },
     konteynerTürü:
@@ -83,14 +83,6 @@ const RequestSchema = new Schema({
     {
         type:String,
         required:true,
-    },aliciFirması:
-    {
-        type:String,
-        required:true,
-    },aliciFirması2:
-    {
-        type:String,
-        require:true,
     },ekacıklama:
     {
         type:String,
@@ -117,14 +109,11 @@ const RequestSchema = new Schema({
         type :String,
         required:true
     }
-
-
-
 })
 
+konteynerSchema.pre("save", async function (next) {
+    const doc = this;   
+    next();
+});
 
-module.exports = requestsModel = mongoose.model(
-    "konteyner",
-    RequestSchema,
-    "konteyner"
-);
+module.exports = konteynerModel = mongoose.model("konteyner", konteynerSchema,"konteyner");
