@@ -23,7 +23,8 @@ const konteynerSchema = Joi.object({
    firmaIhbar1  :Joi.string().required(),
    firmaIhbar2  :Joi.string().required(),
    ekaciklama   :Joi.string().required(),
-   aciklamaasil : Joi.string().required()
+   aciklamaasil : Joi.string().required(),
+   userEmail :Joi.string().required()
 });
 
 module.exports =konteynerSchema;

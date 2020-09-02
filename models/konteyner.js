@@ -108,6 +108,11 @@ const konteynerSchema = new Schema({
     {
         type :String,
         required:true
+    },
+    userEmail:
+    {
+        type:String,
+        require:true,
     }
 })
 
