@@ -67,17 +67,18 @@ app.post("/konteyner", async (req, res, next) => {
     }
 });
 app.delete("/konteyner", async(req, res, next)=> {
-    try {
-        Task.findByIdAndRemove(req.params.mongo_id, function (err, task) {  
+    try{
+        konteynerModel.remove({
+        }, function(err){
+            if (err) {
+                console.log(err)
+            }
+            else {
+                res.send("Removed");
+            }
+        });
 
-            var response = {
-                message: "task successfully deleted",
-                id: req.mongo_id
-            };
-                res.send(response);
-               });
-
-        res.send(`kaydedildi.`);
+       
     } catch (err) {
         next(err);
     }
