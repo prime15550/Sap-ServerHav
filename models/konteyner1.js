@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const konteynerSchema = new Schema({
+const konteynerSchema1 = new Schema({
     isim :
     {
         type : String,
@@ -137,9 +137,9 @@ const konteynerSchema = new Schema({
    
 })
 
-konteynerSchema.pre("save", async function (next) {
+konteynerSchema1.pre("save", async function (next) {
     const doc = this;   
     next();
 });
 
-module.exports = konteynerModel = mongoose.model("konteyner", konteynerSchema,"konteyner");
+module.exports = konteynerModel1 = mongoose.model("konteyner", konteynerSchema1,"konteyner");
