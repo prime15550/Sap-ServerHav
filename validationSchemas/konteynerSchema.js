@@ -29,6 +29,9 @@ const konteynerSchema = Joi.object({
    tasimaSekli:Joi.string().required(),
    ödemesekil :Joi.string().required(),
    paraBirimi :Joi.string().required(),
+   markalama  : Joi.string().required(),
+   ilaclama   : Joi.string().required(),
+   gozetmen   :Joi.string().required(),
 });
 
 module.exports =konteynerSchema;
