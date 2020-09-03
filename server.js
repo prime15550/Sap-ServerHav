@@ -11,8 +11,6 @@ const app = express();
 /* MODEL IMPORTS */
 const kullaniciModel = require("./models/kullanici.js");
 const konteynerModel = require("./models/konteyner.js");
-const konteynerModel1 = require("./models/konteyner1.js");
-
 
 
 /* MIDDLEWARES */
@@ -33,9 +31,6 @@ mongoose
 
 const konteynerSchema = require("./validationSchemas/konteynerSchema");
 const konteyner = require("./models/konteyner.js");
-
-const konteynerSchema1 = require("./validationSchemas/konteynerSchema1");
-const konteyner1 = require("./models/konteyner1.js");
 /* ROUTES */
 app.get("/", (req, res) => {
     res.send("root");
@@ -67,47 +62,6 @@ app.post("/konteyner", async (req, res, next) => {
         await yeniTalep.save();
 
         res.send(`kaydedildi.`);
-    } catch (err) {
-        next(err);
-    }
-});
-app.post("/sepet", async (req, res, next) => {
-    try {
-        const { error } = konteynerSchema1.validate(req.body);
-        if (error) {
-            throw createError(400, error);
-        }
-
-        const yeniTalep = new konteynerModel1(req.body);
-
-        await yeniTalep.save();
-
-        res.send(`kaydedildi.`);
-    } catch (err) {
-        next(err);
-    }
-});
-app.delete("/sepet", async(req, res, next)=> {
-    try{
-        konteynerModel1.remove({
-        }, function(err){
-            if (err) {
-                console.log(err)
-            }
-            else {
-                res.send("Removed");
-            }
-        });
-
-       
-    } catch (err) {
-        next(err);
-    }
-});
-app.get("/sepet", async (req, res, next) => {
-    try {
-        const requests = await konteynerModel1.find({}).select({ _id: 0 });
-        res.json(requests);
     } catch (err) {
         next(err);
     }
