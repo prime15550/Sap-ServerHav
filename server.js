@@ -11,6 +11,7 @@ const app = express();
 /* MODEL IMPORTS */
 const kullaniciModel = require("./models/kullanici.js");
 const konteynerModel = require("./models/konteyner.js");
+const sepetModel = require("./models/sepet.js")
 
 
 /* MIDDLEWARES */
@@ -31,6 +32,8 @@ mongoose
 
 const konteynerSchema = require("./validationSchemas/konteynerSchema");
 const konteyner = require("./models/konteyner.js");
+const sepetSchema = require("./validationSchemas/sepetSchema");
+const sepet = require("./models/sepet.js");
 /* ROUTES */
 app.get("/", (req, res) => {
     res.send("root");
@@ -86,6 +89,48 @@ app.delete("/konteyner", async(req, res, next)=> {
 app.get("/konteyner", async (req, res, next) => {
     try {
         const requests = await konteynerModel.find({}).select({ _id: 0 });
+        res.json(requests);
+    } catch (err) {
+        next(err);
+    }
+});
+
+app.post("/sepet", async (req, res, next) => {
+    try {
+        const { error } = sepetSchema.validate(req.body);
+        if (error) {
+            throw createError(400, error);
+        }
+
+        const yeniTalep = new sepetModel(req.body);
+
+        await yeniTalep.save();
+
+        res.send(`kaydedildi.`);
+    } catch (err) {
+        next(err);
+    }
+});
+app.delete("/sepet", async(req, res, next)=> {
+    try{
+        sepetModel.remove({
+        }, function(err){
+            if (err) {
+                console.log(err)
+            }
+            else {
+                res.send("Removed");
+            }
+        });
+
+       
+    } catch (err) {
+        next(err);
+    }
+});
+app.get("/sepet", async (req, res, next) => {
+    try {
+        const requests = await sepetModel.find({}).select({ _id: 0 });
         res.json(requests);
     } catch (err) {
         next(err);
