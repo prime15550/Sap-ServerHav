@@ -37,7 +37,7 @@ const konteyner = require("./models/konteyner.js");
 const sepetSchema = require("./validationSchemas/sepetSchema");
 const sepet = require("./models/sepet.js");
 
-const sepet = require("./models/basket.js");
+const basket = require("./models/basket.js");
 const basketSchema = require("./validationSchemas/basketSchema");
 /* ROUTES */
 app.get("/", (req, res) => {
