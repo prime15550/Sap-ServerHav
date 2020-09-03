@@ -113,6 +113,10 @@ const konteynerSchema = new Schema({
     {
         type:String,
         require:true,
+    },
+    aciklamaasil:{
+        type:String,
+        require :false,
     }
 })
 
