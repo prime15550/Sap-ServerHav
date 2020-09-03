@@ -32,7 +32,8 @@ const sepetSchema = Joi.object({
    markalama      :Joi.string().required(),
    ilaclama       :Joi.string().required(),
    gozetmen       :Joi.string().required(),
-   id             :Joi.string().required(),
+   durum             :Joi.string().required(),
+   refaransNo   :Joi.string().required(),
 });    
 
 module.exports =sepetSchema;

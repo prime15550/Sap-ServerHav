@@ -133,7 +133,7 @@ const sepetSchema = new Schema({
     {
         type:String,
         require:false,
-    },id:
+    },durum:
     {
         type :String,
         require : true ,
@@ -145,7 +145,11 @@ const sepetSchema = new Schema({
     }, firmaIhbar2 :  {
         type:String,
         require:true,
-    }
+    }, refaransNo :
+    {
+        type : String,
+        require :true,
+    },
    
 })
 
