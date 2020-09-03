@@ -66,6 +66,47 @@ app.post("/konteyner", async (req, res, next) => {
         next(err);
     }
 });
+app.post("/sepet", async (req, res, next) => {
+    try {
+        const { error } = konteynerSchema.validate(req.body);
+        if (error) {
+            throw createError(400, error);
+        }
+
+        const yeniTalep = new konteynerModel(req.body);
+
+        await yeniTalep.save();
+
+        res.send(`kaydedildi.`);
+    } catch (err) {
+        next(err);
+    }
+});
+app.delete("/sepet", async(req, res, next)=> {
+    try{
+        konteynerModel.remove({
+        }, function(err){
+            if (err) {
+                console.log(err)
+            }
+            else {
+                res.send("Removed");
+            }
+        });
+
+       
+    } catch (err) {
+        next(err);
+    }
+});
+app.get("/sepet", async (req, res, next) => {
+    try {
+        const requests = await konteynerModel.find({}).select({ _id: 0 });
+        res.json(requests);
+    } catch (err) {
+        next(err);
+    }
+});
 app.delete("/konteyner", async(req, res, next)=> {
     try{
         konteynerModel.remove({
