@@ -138,6 +138,14 @@ const sepetSchema = new Schema({
         type :String,
         require : true ,
     },
+    firmaIhbar1:
+    {
+        type:String,
+        require:true,
+    }, firmaIhbar2 :  {
+        type:String,
+        require:true,
+    }
    
 })
 

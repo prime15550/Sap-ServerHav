@@ -133,7 +133,15 @@ const konteynerSchema = new Schema({
     {
         type:String,
         require:false,
-    },
+    },firmaIhbar1:
+    {
+        type:String,
+        require:true,
+    },firmaIhbar2:
+    {
+        type:String,
+        require:true,
+    }
    
 })
 
