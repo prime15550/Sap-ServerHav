@@ -12,6 +12,8 @@ const app = express();
 const kullaniciModel = require("./models/kullanici.js");
 const konteynerModel = require("./models/konteyner.js");
 const sepetModel = require("./models/sepet.js")
+const basketModel = require("./models/basket.js")
+
 
 
 /* MIDDLEWARES */
@@ -34,6 +36,9 @@ const konteynerSchema = require("./validationSchemas/konteynerSchema");
 const konteyner = require("./models/konteyner.js");
 const sepetSchema = require("./validationSchemas/sepetSchema");
 const sepet = require("./models/sepet.js");
+const sepetSchema = require("./validationSchemas/basketSchema");
+const sepet = require("./models/basket.js");
+const basketSchema = require("./validationSchemas/basketSchema");
 /* ROUTES */
 app.get("/", (req, res) => {
     res.send("root");
@@ -137,6 +142,50 @@ app.get("/sepet", async (req, res, next) => {
     }
 });
 
+
+
+
+app.post("/basket", async (req, res, next) => {
+    try {
+        const { error } = basketSchema.validate(req.body);
+        if (error) {
+            throw createError(400, error);
+        }
+
+        const yeniTalep = new basketModel(req.body);
+
+        await yeniTalep.save();
+
+        res.send(`kaydedildi.`);
+    } catch (err) {
+        next(err);
+    }
+});
+app.delete("/basket", async(req, res, next)=> {
+    try{
+        basketModel.remove({
+        }, function(err){
+            if (err) {
+                console.log(err)
+            }
+            else {
+                res.send("Removed");
+            }
+        });
+
+       
+    } catch (err) {
+        next(err);
+    }
+});
+app.get("/basket", async (req, res, next) => {
+    try {
+        const requests = await basketModel.find({}).select({ _id: 0 });
+        res.json(requests);
+    } catch (err) {
+        next(err);
+    }
+});
 /* ERROR HANDLER */
 app.use((err, req, res, next) => {
     console.error(err.stack);

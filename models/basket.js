@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const sepetSchema = new Schema({
+const basketSchema = new Schema({
     isim :
     {
         type : String,
@@ -150,12 +150,17 @@ const sepetSchema = new Schema({
         type : String,
         require :true,
     },
+    basket:
+    {
+        type : String,
+        require:true,
+    }
    
 })
 
-sepetSchema.pre("save", async function (next) {
+basketSchema.pre("save", async function (next) {
     const doc = this;   
     next();
 });
 
-module.exports = sepetModel = mongoose.model("sepet", sepetSchema,"sepet");
+module.exports = basketModel = mongoose.model("basket", basketSchema,"basket");
