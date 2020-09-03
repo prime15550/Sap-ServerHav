@@ -34,7 +34,6 @@ const sepetSchema = Joi.object({
    gozetmen       :Joi.string().required(),
    durum             :Joi.string().required(),
    refaransNo   :Joi.string().required(),
-   simdiZaman : Joi.string().required(),
 });    
 
 module.exports =sepetSchema;

@@ -149,11 +149,7 @@ const sepetSchema = new Schema({
     {
         type : String,
         require :true,
-    },simdiZaman :
-    {
-        type : String,
-        require :true,
-    }
+    },
    
 })
 
