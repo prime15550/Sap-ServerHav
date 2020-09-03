@@ -129,6 +129,11 @@ const konteynerSchema = new Schema({
         type:String,
         require:true,
     },
+    ekaciklama :
+    {
+        type:String,
+        require:false,
+    },
    
 })
 
