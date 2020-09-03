@@ -11,6 +11,8 @@ const app = express();
 /* MODEL IMPORTS */
 const kullaniciModel = require("./models/kullanici.js");
 const konteynerModel = require("./models/konteyner.js");
+const konteynerModel1 = require("./models/konteyner.js");
+
 
 
 /* MIDDLEWARES */
@@ -68,12 +70,12 @@ app.post("/konteyner", async (req, res, next) => {
 });
 app.post("/sepet", async (req, res, next) => {
     try {
-        const { error } = konteynerSchema.validate(req.body);
+        const { error } = konteynerSchema1.validate(req.body);
         if (error) {
             throw createError(400, error);
         }
 
-        const yeniTalep = new konteynerModel(req.body);
+        const yeniTalep = new konteynerModel1(req.body);
 
         await yeniTalep.save();
 
@@ -84,7 +86,7 @@ app.post("/sepet", async (req, res, next) => {
 });
 app.delete("/sepet", async(req, res, next)=> {
     try{
-        konteynerModel.remove({
+        konteynerModel1.remove({
         }, function(err){
             if (err) {
                 console.log(err)
@@ -101,7 +103,7 @@ app.delete("/sepet", async(req, res, next)=> {
 });
 app.get("/sepet", async (req, res, next) => {
     try {
-        const requests = await konteynerModel.find({}).select({ _id: 0 });
+        const requests = await konteynerModel1.find({}).select({ _id: 0 });
         res.json(requests);
     } catch (err) {
         next(err);
