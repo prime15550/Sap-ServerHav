@@ -117,7 +117,19 @@ const konteynerSchema = new Schema({
     aciklamaasil:{
         type:String,
         require :false,
-    }
+    }, markalama  :{
+        type:String,
+        require:true,
+    },
+    iaclama   :{
+        type:String,
+        require:true,
+    },
+    gzetmen   :{
+        type:String,
+        require:true,
+    },
+   
 })
 
 konteynerSchema.pre("save", async function (next) {
