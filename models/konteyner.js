@@ -121,11 +121,11 @@ const konteynerSchema = new Schema({
         type:String,
         require:true,
     },
-    iaclama   :{
+    ilaclama   :{
         type:String,
         require:true,
     },
-    gzetmen   :{
+    gozetmen   :{
         type:String,
         require:true,
     },
