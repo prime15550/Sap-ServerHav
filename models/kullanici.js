@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { Int32 } = require("mongodb");
 
 const Schema = mongoose.Schema;
 
@@ -11,8 +10,7 @@ const kullanciSchema = new Schema({
     _firma : String,
     _isim : String, 
     _soyisim : String,
-    _sifre : String,
-    _orderCount:Int32,
+    _sifre : String 
 
 })
 module.exports = kullaniciModel = mongoose.model("users",kullanciSchema,"users")
