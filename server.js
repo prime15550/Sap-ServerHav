@@ -11,7 +11,7 @@ const app = express();
 /* MODEL IMPORTS */
 const kullaniciModel = require("./models/kullanici.js");
 const konteynerModel = require("./models/konteyner.js");
-const konteynerModel1 = require("./models/konteyner.js");
+const konteynerModel1 = require("./models/konteyner1.js");
 
 
 
@@ -33,6 +33,9 @@ mongoose
 
 const konteynerSchema = require("./validationSchemas/konteynerSchema");
 const konteyner = require("./models/konteyner.js");
+
+const konteynerSchema1 = require("./validationSchemas/konteynerSchema1");
+const konteyner1 = require("./models/konteyner1.js");
 /* ROUTES */
 app.get("/", (req, res) => {
     res.send("root");
