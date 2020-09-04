@@ -1,6 +1,6 @@
 const Joi = require("@hapi/joi");
 
-const kullniciSchema = Joi.object({
+const kullaniciSchema = Joi.object({
 
     _isim : Joi.string().required(),
     _soyisim :Joi.string().required(),
@@ -9,4 +9,4 @@ const kullniciSchema = Joi.object({
     _sifre: Joi.string().required(),
 });
 
-module.exports =konteynerSchema;
+module.exports =kullaniciSchema;
