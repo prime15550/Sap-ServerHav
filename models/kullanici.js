@@ -5,12 +5,12 @@ const Schema = mongoose.Schema;
 //Creates ||Kullanci|| Schema
 
 const kullanciSchema = new Schema({
-    _email : String,
-    _telefon : String,
-    _firma : String,
-    _isim : String, 
-    _soyisim : String,
-    _sifre : String 
+    _email :{type : String,require:true,},
+    _telefon :{type: String,require:true,},
+    _firma :{type: String,require:true},
+    _isim : {type:String, required:true,},
+    _soyisim :{type: String,require:true,},
+    _sifre :{type: String,require:true,}, 
 
 })
 module.exports = kullaniciModel = mongoose.model("users",kullanciSchema,"users")

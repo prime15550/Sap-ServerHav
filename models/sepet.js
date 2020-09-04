@@ -83,10 +83,6 @@ const sepetSchema = new Schema({
     {
         type:String,
         required:true,
-    },ekacıklama:
-    {
-        type:String,
-        required:false,
     },tasimaSekli:
     {
         type:String,

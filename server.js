@@ -39,6 +39,9 @@ const sepet = require("./models/sepet.js");
 
 const basket = require("./models/basket.js");
 const basketSchema = require("./validationSchemas/basketSchema");
+const kullanici = require("./models/kullanici.js");
+const kullaniciSchema = require("./validationSchemas/kullaniciSchema");
+const e = require("express");
 /* ROUTES */
 app.get("/", (req, res) => {
     res.send("root");
@@ -54,6 +57,39 @@ app.get("/genelVeri", async (req, res, next) => {
                 users,
             });
         });
+    } catch (err) {
+        next(err);
+    }
+});
+app.post("/geneVeri", async (req, res, next) => {
+    try {
+        const { error } = kullaniciSchema.validate(req.body);
+        if (error) {
+            throw createError(400, error);
+        }
+
+        const yeniTalep = new kullaniciModel(req.body);
+
+        await yeniTalep.save();
+
+        res.send(`kaydedildi.`);
+    } catch (err) {
+        next(err);
+    }
+});
+app.delete("/genelVeri", async(req, res, next)=> {
+    try{
+        kullaniciModel.remove({
+        }, function(err){
+            if (err) {
+                console.log(err)
+            }
+            else {
+                res.send("Removed");
+            }
+        });
+
+       
     } catch (err) {
         next(err);
     }
