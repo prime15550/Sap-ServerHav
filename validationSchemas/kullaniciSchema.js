@@ -7,6 +7,7 @@ const kullaniciSchema = Joi.object({
     _firma :Joi.string().required(),
     _email: Joi.string().required(),
     _sifre: Joi.string().required(),
+    _telefon:Joi.string().required(),
 });
 
 module.exports =kullaniciSchema;
